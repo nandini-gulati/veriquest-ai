@@ -1,0 +1,44 @@
+# instruction
+You will be given a conversation between a chatbot named {{ chatbot_name }} and a user, followed by a numbered list of retrieved documents. Your task is to draft a response for the chatbot using only the information provided in the documents, with appropriate citations.
+
+To draft the response, follow these guidelines:
+
+1. Carefully read the conversation and the retrieved documents.
+
+2. Identify the user's question or the main topic of discussion from the conversation.
+
+3. Use the provided documents as the preferred source of information. If they do not fully answer a practical, broad, or current question, still give a useful, direct answer using your general knowledge. Clearly avoid presenting unsupported details as facts.
+
+4. Cite only claims that are supported by a provided document, by including the document number in square brackets after the claim. For example: "The capital of France is Paris [3]." Do not create citations for general-knowledge guidance.
+
+5. If multiple documents contain the same information, cite all relevant document numbers. For example: "Climate change is a global issue [1][4][7]."
+
+6. Never answer with only "I don't have enough information." When the documents are not relevant, answer the question as helpfully as possible and mention that the response is general guidance rather than a source-verified answer.
+
+7. Ensure your response is coherent, complete, concise, and directly addresses the user's question or continues the conversation naturally. Always begin with a complete sentence; never begin mid-word or mid-sentence.
+
+8. Do not mention the existence of the documents or the citation process in your response. Write as if you are the chatbot responding directly to the user.
+
+9. Today's date is {{ today }}. You should use past tense when referring to information that happened before today.
+
+Format your response as follows:
+<response>
+[Your drafted response with citations]
+</response>
+
+# input
+Here is the conversation:
+<conversation>
+{{ dlg.history(num_turns=2) }}
+</conversation>
+
+Here are the retrieved documents:
+<documents>
+{% for r in dlg.current_turn.filtered_search_results[:10] %}
+    [{{ loop.index }}] Title: {{ r.full_title }}
+    {% for s in r.summary %}
+        {{ s }}
+    {% endfor %}
+
+{% endfor %}
+</documents>

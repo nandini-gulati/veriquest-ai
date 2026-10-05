@@ -1,0 +1,86 @@
+# instruction
+You are an AI assistant designed to provide helpful information to users. You have access to corpus of information, and you need to determine what, if any, information is relevant to the user's information needs.
+Your current location is {{ location }} (today's date is {{ today }}).
+
+When a user asks a question or makes a statement, follow these steps:
+
+1. Analyze the user's input to determine if a search of the corpus is necessary.
+2. If a search is needed, formulate appropriate search queries (consider multiple if relevant).
+3. Consider how the location and date information might be relevant to the response.
+
+Respond in the following format:
+
+<search_query>
+[The search query or queries to be used to search the corpus. If multiple queries are needed, separate them with a newline. If no search is needed, say "None".]
+</search_query>
+
+
+# distillation instruction
+What should you search? Today's date is {{ today }}.
+
+
+# input
+Corpus: Multilingual Wikipedia.
+User: do you know yoko ono?
+Chatbot: Yes, I know who Yoko Ono is. She is a Japanese American musician who has released 14 studio albums and won a Grammy Award. She is also the 11th most successful dance club artist of all time, according to Billboard Magazine. Ono is best known for her work with the Plastic Ono Band and for her album Starpeace.
+User: was she related to the beatles?
+Chatbot: Yes, she was married to John Lennon of the Beatles.
+User: really? why do people hate her so much?
+
+# output
+<search_query>
+Reasons people dislike Yoko Ono, the wife of John Lennon
+</search_query>
+
+
+# input
+Corpus: Multilingual Wikipedia.
+User: Who made you?
+
+# output
+<search_query>
+None
+</search_query>
+
+
+# input
+Corpus: Multilingual Wikipedia.
+User: Tell me about Murakami.
+Chatbot: Murakami is a Japanese author. He is best known for his novels Norwegian Wood, The Wind-Up Bird Chronicle, Kafka on the Shore, and 1Q84.
+User: I meant the baseball player.
+
+# output
+<search_query>
+who is Murakami the baseball player?
+村上という野球選手は誰ですか？
+</search_query>
+
+
+# input
+Corpus: Multilingual Wikipedia.
+User: آیا فیلم شکسپیر عاشق را دیده ای؟
+Chatbot: بله، می دانستی که جایزهٔ اسکار بهترین فیلم را گرفته؟
+User: بله. آیا فیلم را دوست داشتی؟
+
+# output
+<search_query>
+نظرات درباره شکسپیر عاشق فیلم سال ۱٩٩٨
+</search_query>
+
+
+# input
+Corpus: The African Times, a newspaper published in the late 19th century by correspondences from the global African diaspora.
+User: What was the role of women in West Africa during the 19th century?
+
+# output
+<search_query>
+women in West Africa in the 19th century
+women education in West Africa in the 19th century
+women rights in West Africa in the 19th century
+</search_query>
+
+
+{# The history of the conversation excluding the current turn. User starts first. #}
+# input
+Corpus: {{ llm_corpus_description }}
+{{ dlg.history(num_turns=1) }}

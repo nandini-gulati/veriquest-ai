@@ -1,0 +1,14 @@
+.git
+.env
+.files
+__pycache__
+**/__pycache__
+*.py[cod]
+data/veriquest_ai.sqlite3
+workdir
+workdir_ephemeral
+node_modules
+.idea
+.vscode
+*.tar.gz
+*.bz2
