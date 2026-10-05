@@ -32,7 +32,7 @@ is a separate hosting decision.
 | Web interface | Chainlit, HTML/CSS/JavaScript | Chat UI, session handling, and the VeriQuest visual theme |
 | Backend | Python 3.11, Chainlit | Receives messages and coordinates the answer pipeline |
 | AI model | OpenRouter, LiteLLM/Chainlite, LangChain, LangGraph | Sends prompts to the configured LLM and manages the response flow |
-| Knowledge retrieval | Wikipedia REST API | Finds current Wikipedia search results and summaries directly, without the Stanford retriever |
+| Knowledge retrieval | Wikipedia REST API | Finds current Wikipedia search results and summaries directly|
 | Optional web search | Google Programmable Search JSON API | Adds Google web result snippets when configured |
 | Optional advanced retrieval | Qdrant, Hugging Face Transformers, ONNX Runtime | Supports local vector-search workflows; it is not required for normal direct-Wikipedia chat |
 | Data and operations | Pydantic, Loguru, Redis client, Cosmos DB support | Validation, logging, caching support, and optional conversation persistence |
@@ -170,7 +170,7 @@ Hard-refresh the page with `Command + Shift + R` on macOS or `Ctrl + Shift + R` 
 
 ## Notes
 
-- The direct Wikipedia mode is the default source path. It does not require the previous Stanford-hosted retriever.
+- The direct Wikipedia mode is the default source path. 
 - Google search is optional and requires its own Google credentials.
 - Cosmos DB is optional. If it is not configured, the app remains usable but does not persist conversations remotely.
 - Completed chats are always saved locally on this laptop in `data/veriquest_ai.sqlite3`. This file is private and excluded from Git.
